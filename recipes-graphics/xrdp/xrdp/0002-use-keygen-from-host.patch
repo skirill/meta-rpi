@@ -1,0 +1,28 @@
+From 9d66125944422982e188287b345e10568a74897e Mon Sep 17 00:00:00 2001
+From: skirill <kirill.senoshenko@gmail.com>
+Date: Thu, 27 Apr 2017 12:38:24 +0700
+Subject: [PATCH] use keygen from host
+
+---
+ keygen/Makefile.am | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+ mode change 100644 => 100755 keygen/Makefile.am
+
+diff --git a/keygen/Makefile.am b/keygen/Makefile.am
+old mode 100644
+new mode 100755
+index 2422196..e5fda5b
+--- a/keygen/Makefile.am
++++ b/keygen/Makefile.am
+@@ -20,7 +20,7 @@ xrdpsysconfdir = $(sysconfdir)/xrdp
+ install-data-hook:
+ 	umask 077 && \
+ 	if [ ! -f $(DESTDIR)$(xrdpsysconfdir)/rsakeys.ini ]; then \
+-	  ./xrdp-keygen xrdp $(DESTDIR)$(xrdpsysconfdir)/rsakeys.ini; \
++	  /usr/bin/xrdp-keygen xrdp $(DESTDIR)$(xrdpsysconfdir)/rsakeys.ini; \
+ 	fi && \
+ 	if [ ! -f $(DESTDIR)$(xrdpsysconfdir)/cert.pem ]; then \
+ 	  $(OPENSSL) req -x509 -newkey rsa:2048 -sha256 -nodes \
+-- 
+1.9.1
+
